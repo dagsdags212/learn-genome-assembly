@@ -22,6 +22,23 @@ git clone https://github.com/dagsdags212/learn-genome-assembly.git
 cd learn-genome-assembly
 ```
 
+Next, install micromamba as instructed [here](https://mamba.readthedocs.io/en/latest/installation/micromamba-installation.html) and configure with:
+```sh
+micromamba config append channels bioconda     # source of many bioinformatics-specific tools
+micromamba config append channels conda-forge  # for other python packages such as numpy and pandas
+micromamba config set channel_priority strict
+```
+
+Then create a new environment from the `env.yml` file:
+```sh
+micromamba create -f env.yml
+```
+
+Activate the environment with:
+```sh
+micromamba activate assembly
+```
+
 Explore available commands by running:
 ```sh
 make usage
