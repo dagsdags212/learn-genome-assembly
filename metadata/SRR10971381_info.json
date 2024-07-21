@@ -1,0 +1,24 @@
+{
+  "run_accession": "SRR10971381",
+  "sample_accession": "SAMN13922059",
+  "sample_alias": "Human-BALF",
+  "sample_description": "Keywords: GSC:MIxS MIMS:5.0",
+  "first_public": "2020-02-05",
+  "country": "China: Wuhan",
+  "scientific_name": "human lung metagenome",
+  "fastq_bytes": "1160191847;1216048922",
+  "base_count": "8031043214",
+  "read_count": "28282964",
+  "library_name": "1",
+  "library_strategy": "RNA-Seq",
+  "library_source": "METATRANSCRIPTOMIC",
+  "library_layout": "PAIRED",
+  "instrument_platform": "ILLUMINA",
+  "instrument_model": "Illumina MiniSeq",
+  "study_title": "Complete genome of a novel coronavirus associated with severe human respiratory disease in Wuhan, China",
+  "fastq_url": [
+    "https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR109/081/SRR10971381/SRR10971381_1.fastq.gz",
+    "https://ftp.sra.ebi.ac.uk/vol1/fastq/SRR109/081/SRR10971381/SRR10971381_2.fastq.gz"
+  ],
+  "info": "1 GB, 1 GB files; 28.3 million reads; 8031.0 million sequenced bases"
+}
