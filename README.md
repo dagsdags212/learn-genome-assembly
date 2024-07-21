@@ -35,6 +35,12 @@ Run the assembly pipeline by invoking the following command:
 make assemble
 ```
 
+Fetching data from the SRA can take a long time depending on your network speed. Additionally, the assembly process make take up a significant portion of your machine's computing resources. To run the pipeline on a smaller subset of the SRA data, pass in the number of reads using the `N` parameter. You can also specify the amount of cores to be alloted for the assembly through the `CPU` parameter.
+```sh
+# Run assembly with 100000 reads and 8 cores
+make assemble N=100000 CPU=8
+```
+
 Other commands include:
 ```
 # Gather sequence statistics
@@ -46,3 +52,5 @@ make multiqc
 # Visualize assembled contigs using Bandage
 make visualize
 ```
+
+For any questions or suggestions, feel free to contact me at `jegsamson.dev@gmail.com`.
