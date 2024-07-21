@@ -1,0 +1,166 @@
+output
+├── 119_genome_graph.png
+├── fastqc
+│   ├── trimmed_1P_fastqc.html
+│   ├── trimmed_1P_fastqc.zip
+│   ├── trimmed_1U_fastqc.html
+│   ├── trimmed_1U_fastqc.zip
+│   ├── trimmed_2P_fastqc.html
+│   ├── trimmed_2P_fastqc.zip
+│   ├── trimmed_2U_fastqc.html
+│   └── trimmed_2U_fastqc.zip
+├── k119.fastg
+├── megahit
+│   ├── checkpoints.txt
+│   ├── done
+│   ├── final.contigs.fa
+│   ├── intermediate_contigs
+│   │   ├── k119.addi.fa
+│   │   ├── k119.addi.fa.info
+│   │   ├── k119.bubble_seq.fa
+│   │   ├── k119.bubble_seq.fa.info
+│   │   ├── k119.contigs.fa
+│   │   ├── k119.contigs.fa.info
+│   │   ├── k119.final.contigs.fa
+│   │   ├── k119.final.contigs.fa.info
+│   │   ├── k119.local.fa
+│   │   ├── k119.local.fa.info
+│   │   ├── k141.addi.fa
+│   │   ├── k141.addi.fa.info
+│   │   ├── k141.bubble_seq.fa
+│   │   ├── k141.bubble_seq.fa.info
+│   │   ├── k141.contigs.fa
+│   │   ├── k141.contigs.fa.info
+│   │   ├── k141.final.contigs.fa
+│   │   ├── k141.final.contigs.fa.info
+│   │   ├── k21.addi.fa
+│   │   ├── k21.addi.fa.info
+│   │   ├── k21.bubble_seq.fa
+│   │   ├── k21.bubble_seq.fa.info
+│   │   ├── k21.contigs.fa
+│   │   ├── k21.contigs.fa.info
+│   │   ├── k21.final.contigs.fa
+│   │   ├── k21.final.contigs.fa.info
+│   │   ├── k21.local.fa
+│   │   ├── k21.local.fa.info
+│   │   ├── k29.addi.fa
+│   │   ├── k29.addi.fa.info
+│   │   ├── k29.bubble_seq.fa
+│   │   ├── k29.bubble_seq.fa.info
+│   │   ├── k29.contigs.fa
+│   │   ├── k29.contigs.fa.info
+│   │   ├── k29.final.contigs.fa
+│   │   ├── k29.final.contigs.fa.info
+│   │   ├── k29.local.fa
+│   │   ├── k29.local.fa.info
+│   │   ├── k39.addi.fa
+│   │   ├── k39.addi.fa.info
+│   │   ├── k39.bubble_seq.fa
+│   │   ├── k39.bubble_seq.fa.info
+│   │   ├── k39.contigs.fa
+│   │   ├── k39.contigs.fa.info
+│   │   ├── k39.final.contigs.fa
+│   │   ├── k39.final.contigs.fa.info
+│   │   ├── k39.local.fa
+│   │   ├── k39.local.fa.info
+│   │   ├── k59.addi.fa
+│   │   ├── k59.addi.fa.info
+│   │   ├── k59.bubble_seq.fa
+│   │   ├── k59.bubble_seq.fa.info
+│   │   ├── k59.contigs.fa
+│   │   ├── k59.contigs.fa.info
+│   │   ├── k59.final.contigs.fa
+│   │   ├── k59.final.contigs.fa.info
+│   │   ├── k59.local.fa
+│   │   ├── k59.local.fa.info
+│   │   ├── k79.addi.fa
+│   │   ├── k79.addi.fa.info
+│   │   ├── k79.bubble_seq.fa
+│   │   ├── k79.bubble_seq.fa.info
+│   │   ├── k79.contigs.fa
+│   │   ├── k79.contigs.fa.info
+│   │   ├── k79.final.contigs.fa
+│   │   ├── k79.final.contigs.fa.info
+│   │   ├── k79.local.fa
+│   │   ├── k79.local.fa.info
+│   │   ├── k99.addi.fa
+│   │   ├── k99.addi.fa.info
+│   │   ├── k99.bubble_seq.fa
+│   │   ├── k99.bubble_seq.fa.info
+│   │   ├── k99.contigs.fa
+│   │   ├── k99.contigs.fa.info
+│   │   ├── k99.final.contigs.fa
+│   │   ├── k99.final.contigs.fa.info
+│   │   ├── k99.local.fa
+│   │   └── k99.local.fa.info
+│   ├── log
+│   └── options.json
+├── multiqc
+│   ├── multiqc_data
+│   │   ├── fastqc_adapter_content_plot.txt
+│   │   ├── fastqc_overrepresented_sequences_plot.txt
+│   │   ├── fastqc_per_base_n_content_plot.txt
+│   │   ├── fastqc_per_base_sequence_quality_plot.txt
+│   │   ├── fastqc_per_sequence_gc_content_plot_Counts.txt
+│   │   ├── fastqc_per_sequence_gc_content_plot_Percentages.txt
+│   │   ├── fastqc_per_sequence_quality_scores_plot.txt
+│   │   ├── fastqc_sequence_counts_plot.txt
+│   │   ├── fastqc_sequence_duplication_levels_plot.txt
+│   │   ├── fastqc_sequence_length_distribution_plot.txt
+│   │   ├── fastqc-status-check-heatmap.txt
+│   │   ├── fastqc_top_overrepresented_sequences_table.txt
+│   │   ├── multiqc_citations.txt
+│   │   ├── multiqc_data.json
+│   │   ├── multiqc_general_stats.txt
+│   │   ├── multiqc.log
+│   │   └── multiqc_sources.txt
+│   ├── multiqc_plots
+│   │   ├── pdf
+│   │   │   ├── fastqc_adapter_content_plot.pdf
+│   │   │   ├── fastqc_overrepresented_sequences_plot.pdf
+│   │   │   ├── fastqc_per_base_n_content_plot.pdf
+│   │   │   ├── fastqc_per_base_sequence_quality_plot.pdf
+│   │   │   ├── fastqc_per_sequence_gc_content_plot_Counts.pdf
+│   │   │   ├── fastqc_per_sequence_gc_content_plot_Percentages.pdf
+│   │   │   ├── fastqc_per_sequence_quality_scores_plot.pdf
+│   │   │   ├── fastqc_sequence_counts_plot-cnt.pdf
+│   │   │   ├── fastqc_sequence_counts_plot-pct.pdf
+│   │   │   ├── fastqc_sequence_duplication_levels_plot.pdf
+│   │   │   ├── fastqc_sequence_length_distribution_plot.pdf
+│   │   │   ├── fastqc-status-check-heatmap.pdf
+│   │   │   ├── fastqc_top_overrepresented_sequences_table.pdf
+│   │   │   └── general_stats_table.pdf
+│   │   ├── png
+│   │   │   ├── fastqc_adapter_content_plot.png
+│   │   │   ├── fastqc_overrepresented_sequences_plot.png
+│   │   │   ├── fastqc_per_base_n_content_plot.png
+│   │   │   ├── fastqc_per_base_sequence_quality_plot.png
+│   │   │   ├── fastqc_per_sequence_gc_content_plot_Counts.png
+│   │   │   ├── fastqc_per_sequence_gc_content_plot_Percentages.png
+│   │   │   ├── fastqc_per_sequence_quality_scores_plot.png
+│   │   │   ├── fastqc_sequence_counts_plot-cnt.png
+│   │   │   ├── fastqc_sequence_counts_plot-pct.png
+│   │   │   ├── fastqc_sequence_duplication_levels_plot.png
+│   │   │   ├── fastqc_sequence_length_distribution_plot.png
+│   │   │   ├── fastqc-status-check-heatmap.png
+│   │   │   ├── fastqc_top_overrepresented_sequences_table.png
+│   │   │   └── general_stats_table.png
+│   │   └── svg
+│   │       ├── fastqc_adapter_content_plot.svg
+│   │       ├── fastqc_overrepresented_sequences_plot.svg
+│   │       ├── fastqc_per_base_n_content_plot.svg
+│   │       ├── fastqc_per_base_sequence_quality_plot.svg
+│   │       ├── fastqc_per_sequence_gc_content_plot_Counts.svg
+│   │       ├── fastqc_per_sequence_gc_content_plot_Percentages.svg
+│   │       ├── fastqc_per_sequence_quality_scores_plot.svg
+│   │       ├── fastqc_sequence_counts_plot-cnt.svg
+│   │       ├── fastqc_sequence_counts_plot-pct.svg
+│   │       ├── fastqc_sequence_duplication_levels_plot.svg
+│   │       ├── fastqc_sequence_length_distribution_plot.svg
+│   │       ├── fastqc-status-check-heatmap.svg
+│   │       ├── fastqc_top_overrepresented_sequences_table.svg
+│   │       └── general_stats_table.svg
+│   └── multiqc_report.html
+└── trim_summary.txt
+
+9 directories, 154 files
