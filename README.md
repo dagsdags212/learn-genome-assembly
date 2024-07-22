@@ -2,7 +2,7 @@
 
 The main purpose of this repository is to demonstrate the steps involved in *de novo* assembly of a viral genome, namely **SARS-CoV-2**.
 
-Sequencing reads used for the pipeline were retrieved from accession [SRR10971381](https://trace.ncbi.nlm.nih.gov/Traces/?view=run_browser&acc=SRR10971381&display=metadata) as provided by [Wu et al. 2020](https://www.nature.com/articles/s41586-020-2008-3). The steps involved in the assembly pipeline is listed as follows:
+Sequencing reads used for the pipeline were retrieved from accession [SRR10971381](https://trace.ncbi.nlm.nih.gov/Traces/?view=run_browser&acc=SRR10971381&display=metadata) as provided by [Wu et al. 2020](https://www.nature.com/articles/s41586-020-2008-3). The steps involved in the assembly pipeline are listed as follows:
 
 1. Data retrieval
 2. Exploration of sequence properties
@@ -12,6 +12,8 @@ Sequencing reads used for the pipeline were retrieved from accession [SRR1097138
 5. Contig visualization
 
 Each task in the pipeline can be executed as a separate bash script. The order of execution is orchestrated using `GNU Make`, as provided by a `Makefile` in the root directory. A custom `conda` environment is used to manage dependencies.
+
+## Prerequisites
 
 The first step in reproducing the analysis is to clone the repository in your local machine:
 ```sh
@@ -34,10 +36,37 @@ Then create a new environment from the `env.yml` file:
 micromamba create -f env.yml
 ```
 
+We will be using `fastq-dump` for retrieving sequencing reads from the **Sequence Read Archive**. Unfortunately, the bioconda channel does not always provide the latest version of the toolkit. Using an outdated version may result in errors. This issue is easily solved by downloading the toolkit from the official source.
+
+Download the latest version of the SRA toolkit (here)[https://github.com/ncbi/sra-tools/wiki/02.-Installing-SRA-Toolkit] and copy the binaries to the environment:
+```sh
+# Define the default environment file.
+ENV=${MAMBA_ROOT_PREFIX}/envs/assembly
+
+# Download sratoolkit from source.
+wget --output-document sratoolkit.tar.gz -t 3 https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/current/sratoolkit.current-ubuntu64.tar.gz
+
+# Uncompress tarfile.
+tar xzvf sratoolkit.tar.gz
+
+# Copy executables to the bin directory of the environment.
+cp -r sratoolkit*/bin/* ${ENV}/bin
+
+# Delete the original download.
+rm -rf sratoolkit*
+```
+
+As of writing, the current version of `fastq-dump` is `3.1.1`. Verify that you have the same version by running:
+```sh
+fastq-dump --version
+```
+
 Activate the environment with:
 ```sh
 micromamba activate assembly
 ```
+
+## Running the Pipeline
 
 Explore available commands by running:
 ```sh
