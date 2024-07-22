@@ -41,10 +41,14 @@ READSDIR = ${DATADIR}/reads
 ## This points to the directory storing FASTQC reports.
 FASTQC_DIR = ${OUTDIR}/fastqc
 
+## This points to the BLAST database index.
+BLAST_DB = ${ROOT}/tmp/db
 # Define file patterns.
 
 ## Matches pair-end reads in FASTQ format.
 READS ?= ${READSDIR}/*
+
+CONTIGS ?= ${OUTDIR}/megahit/final.contigs.fa
 
 # Define parameterized variables.
 
@@ -57,6 +61,9 @@ N ?=
 ## Number of CPU threads to use.
 CPU ?= 12
 
+## Format BLAST output.
+BLASTFMT ?= 6 pident length sacc stitle evalue
+
 # Define ASSEMBLY parameters.
 KMIN ?= 21
 KMAX ?= 119
@@ -66,17 +73,19 @@ usage:
 > @echo -e '\nA simple de novo assembly pipeline for generating contigs from sequencing reads.'
 > @echo
 > @echo 'COMMANDS:'
-> @echo -e '    data      \t download sequencing read from an accession number.'
-> @echo -e '    metadata  \t retrieve run metadata from an accession number.'
-> @echo -e '    fastqc    \t generate fastQC report from raw reads.'
-> @echo -e '    multiqc   \t consolidate fastQC reports into a single summary.'
-> @echo -e '    trim      \t remove low-quality bases and/or adapter reads.'
-> @echo -e '    assemble  \t generate contigs from sequencing reads.'
-> @echo -e '    stats     \t describe sequence statistics from reads.'
-> @echo -e '    visualize \t generate an image from a genome graph.'
-> @echo -e '    all       \t run complete pipeline. (data --> trim --> assemble)\n'
+> @echo -e '    make all       \t run complete pipeline. (data --> trim --> assemble)\n'
+> @echo -e '    make assemble  \t generate contigs from sequencing reads.'
+> @echo -e '    make blast     \t query longest contig sequence against viral reference genome database.'
+> @echo -e '    make clean     \t delete temporary files and directores.'
+> @echo -e '    make data      \t download sequencing read from an accession number.'
+> @echo -e '    make fastqc    \t generate fastQC report from raw reads.'
+> @echo -e '    make metadata  \t retrieve run metadata from an accession number.'
+> @echo -e '    make multiqc   \t consolidate fastQC reports into a single summary.'
+> @echo -e '    make stats     \t describe sequence statistics from reads.'
+> @echo -e '    make trim      \t remove low-quality bases and/or adapter reads.'
+> @echo -e '    make visualize \t generate an image from a genome graph.'
 
-all: data trim assemble visualize
+all: data trim assemble visualize blast
 
 info:
 > @echo -e '\nDEFAULTS:'
@@ -144,19 +153,41 @@ assemble: ${READSDIR}
 > megahit -1 ${READSDIR}/trimmed_1P.fq -2 ${READSDIR}/trimmed_2P.fq \
 		-o ${OUTDIR}/megahit \
 		--num-cpu-threads ${CPU} \
-		--k-min ${KMAX} --k-max ${KMIN} --k-step {KSTEP}
+		--k-min ${KMIN} --k-max ${KMAX} --k-step ${KSTEP}
 >
 #	Generate sequence statistics for contigs.
 > @echo "Generating stats for assembled contigs:"
 > python3 scripts/summarize_assembly.py ${OUTDIR}/megahit/final.contigs.fa -o ${METADATADIR}/final.contigs.csv
-> seqkit stats ${OUTDIR}/megahit/final.contigs.fa
+> seqkit stats ${CONTIGS}
 
 # Visualize assembled contigs with Bandage.
-visualize: ${OUTDIR}/megahit/final.contigs.fa
+visualize: ${CONTIGS}
 > # Convert intermediate contigs into genome graph (.fastg)
 > megahit_toolkit contig2fastg ${KMAX} ${OUTDIR}/megahit/intermediate_contigs/k${KMAX}.contigs.fa > ${OUTDIR}/k${KMAX}.fastg
 >
 > # Generate image from graph
 > Bandage image ${OUTDIR}/k${KMAX}.fastg ${OUTDIR}/k${KMAX}_genome_graph.png
 
-.PHONY: info data metadata stats all
+# Download preformatted database containing viral genome references from NCBI.
+${BLAST_DB}: ${CONTIGS}
+> # Create a tmp directory for storing the db index.
+> mkdir -p ${BLAST_DB}
+>
+> # Download and decompress genomes.
+> (cd ${BLAST_DB} && update_blastdb.pl --decompress ref_viruses_rep_genomes --source ncbi --verbose) 
+
+# Query longest contig against local BLAST database.
+blast: ${BLAST_DB}
+> blastn -db ${BLAST_DB}/ref_viruses_rep_genomes \
+		-query ${OUTDIR}/candidate_genome.fa \
+		-outfmt "${BLASTFMT}" | \
+	sort -nr | head -n 10 > ${OUTDIR}/blast_result.txt
+>
+> # Print path to BLAST results
+> @echo -e '\nTop 10 hits can be viewed at: \n\n\t${OUTDIR}/blast_result.txt\n'
+
+# Delete temporary directory and othe satellite files.
+clean:
+> rm -rf ${ROOT}/tmp ${OUTDIR}/megahit/intermediate_contigs
+
+.PHONY: info data metadata stats all clean
