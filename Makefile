@@ -17,14 +17,14 @@ MAKEFLAGS += --warn-undefined-variables --no-builtin-rules
 .RECIPEPREFIX = >
 
 # Check if all required exectuables are installed.
-EXE = fastqc multiqc megahit bio fastq-dump seqkit Bandage
+EXE = fastqc multiqc megahit bio fastq-dump seqkit Bandage blastn
 CHECK := $(foreach exec, $(EXE),\
 				 $(if $(shell which $(exec)),some string,$(error 'Program: $(exec) not found.')))
 
 # Define path variables.
 
 ## This points to the project root directory.
-ROOT ?= ${HOME}/gh-repos/learn-assembly
+ROOT ?= $(PWD)
 
 ## This points to the data directory.
 DATADIR = ${ROOT}/data
@@ -94,7 +94,7 @@ info:
 > @echo 'FILEPATHS:'
 > @echo -e '\tWorking directory: $(PWD)'
 > @echo -e '\tData directory: ${DATADIR}'
-> @echo -e '\tMetadata directory: ${DATADIR}'
+> @echo -e '\tMetadata directory: ${METADATADIR}'
 > @echo -e '\tOutput directory: ${OUTDIR}'
 > @echo 'DEPENDENCIES:'
 > @echo -e '\t${EXE}\n'
