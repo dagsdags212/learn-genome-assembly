@@ -58,6 +58,19 @@ Fetching data from the SRA can take a long time depending on your network speed.
 make assemble N=100000 CPU=8
 ```
 
+After identifying the id of the longest generated contig, run a BLAST query to identify similar sequences and their respective hosts:
+```sh
+make blast
+```
+
+Run the entire pipeline using:
+```
+make all
+
+# Do some cleanup afterwards to save disk space
+make clean
+```
+
 Other commands include:
 ```
 # Gather sequence statistics
